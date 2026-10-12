@@ -196,8 +196,8 @@ function actualtime(){
     const hourscolumn = today.getHours()*6;
     const timelinecolumn = hourscolumn -8*6 + 1 + Math.floor(today.getMinutes()/ 10);
     console.log(today);
-    if (timelinecolumn <1){
-      timelinecolumn = 1
+    if (timelinecolumn < 1){
+      timelinecolumn = 1;
     }
     document.getElementById("timeline").style.gridColumn=timelinecolumn;
 }
