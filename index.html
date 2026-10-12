@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/images/icon.ico">
+    
+    <title>Kalendár</title>
+</head>
+<body>
+    <div class="checkboxy">
+        <div class="riskodiv"><input checked class="riskocheckbox" id="riskocheckbox" type="checkbox" onchange="riskochange()"><label for="riskocheckbox"><p>Risko</p></label></div>
+        <div class="kubkodiv"><input checked class="kubkocheckbox" id="kubkocheckbox" type="checkbox" onchange="kubkochange()"><label for="kubkocheckbox"><p>Kubko</p></label></div>
+        <div class="tomidiv"><input checked class="tomicheckbox" id="tomicheckbox" type="checkbox" onchange="tomichange()"><label for="tomicheckbox"><p>Tomi</p></label></div>
+        <div class="adkadiv"><input checked class="adkacheckbox" id="adkacheckbox" type="checkbox" onchange="adkachange()"><label for="adkacheckbox"><p>Adka</p></label></div>
+        <div class="krskodiv"><input checked class="krskocheckbox" id="krskocheckbox" type="checkbox" onchange="krskochange()"><label for="krskocheckbox"><p>Krsko</p></label></div>
+        <div class="olkodiv"><input checked class="olkocheckbox" id="olkocheckbox" type="checkbox" onchange="olkochange()"><label for="olkocheckbox"><p>Olko</p></label></div>
+        <div><button id="aktualnybutton" onclick="aktualnybuttonpress()">Aktuálny Týžden</button></div>
+        <div><button id="sudybutton" onclick="sudybuttonpress()">Sudy Týžden</button></div>
+        <div><button id="lichybutton" onclick="lichybuttonpress()">Lichý Týžden</button></div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>01/2026</th>
+                <td class="cas" colspan="14"><div>
+                    <p>8:00 </p>
+                    <p>9:00 </p>
+                    <p>10:00</p>
+                    <p>11:00</p>
+                    <p>12:00</p>
+                    <p>13:00</p>
+                    <p>14:00</p>
+                    <p>15:00</p>
+                    <p>16:00</p>
+                    <p>17:00</p>
+                    <p>18:00</p>
+                    <p>19:00</p>
+                    <p>20:00</p>
+                    <p>21:00</p>
+                </div></td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Pondelok</th>
+                <td class="pondelok" colspan="14"><div id="pondelokdiv">
+                    <p class="risko event item12 cviko">Risko-TV</p>
+                    <p class="risko event item13 cviko">Risko-MAT</p>
+                    <p class="krsko event item22 prednaska">Krsko-ME</p>
+                    <p class="krsko event item23 prednaska">Krsko-ZF</p>
+                    <p class="adka event item22 prednaska">Adka-ME</p>
+                    <p class="adka event item31 cviko">Adka-ANJ</p>
+                    <p class="kubko event item35 prednaska">Kubko-ZD</p>
+                    <p class="olko event item41 cviko">Olko-PRP</p>
+                    <p class="olko event item42 cviko">Olko-ANA-PIT</p>
+                    <p class="olko event item43 cviko">Olko-LT</p>
+                    <p class="olko event item44 cviko">Olko-BIOFYZ</p>
+                </div></td>
+                
+            </tr>
+            <tr>
+                <th>Utorok</th>
+                <td class="utorok" colspan="14"><div id="utorokdiv">
+                    <p class="tomi event item1 cviko">Tomi-ANJ</p>
+                    <p class="tomi event item2 prednaska">Tomi-RP</p>
+                    <p class="tomi event item3 prednaska">Tomi-TP</p>
+                    <p class="tomi event item4 prednaska">Tomi-OPD</p>
+                    <p class="risko event item14 prednaska">Risko-MAT</p>
+                    <p class="risko event item15 prednaska">Risko-OCH</p>
+                    <p class="risko event item16 prednaska">Risko-FYZ</p>
+                    <p class="risko event item17 cviko">Risko-FYZ</p>
+                    <p class="krsko event item24 cviko">Krsko-ANJ</p>
+                    <p class="olko event item45 cviko">Olko-LEK</p>
+                    <p class="olko event item46 cviko">Olko-LT</p>
+                    <p class="olko event item48 cviko">Olko-OCH</p>
+                    <p class="olko event item47 cviko">Olko-OAP</p>
+                    
+                    
+                </div></td>
+            </tr>
+            <tr>
+                <th>Streda</th>
+                <td class="streda" colspan="14"><div id="stredadiv">
+                    <p class="tomi event item5 prednaska">Tomi-SV</p>
+                    <p class="tomi event item6 prednaska">Tomi-SP</p>
+                    <p class="krsko event item25 prednaska">Krsko-MAT</p>
+                    <p class="krsko event item26 cviko">Krsko-ME</p>
+                    <p class="krsko event item27 cviko">Krsko-ZP</p>
+                    <p class="adka event item25 prednaska">Adka-MAT</p>
+                    <p class="adka event item27 cviko">Adka-ZP</p>
+                    <p class="adka event item31 cviko">Adka-ME</p>
+                    <p class="kubko event item36 prednaska">Kubko-NP</p>
+                    <p class="kubko event item37 cviko">Kubko-AJ</p>
+                    <p class="kubko event item38 cviko">Kubko-MAT</p>
+                    <p class="kubko event item39 cviko lichy">Kubko-ZD lichy</p>
+                    <p class="olko event item49 cviko">Olko-OG</p>
+                    <p class="olko event item50 cviko">Olko-BB</p>
+                    <p class="olko event item51 cviko">Olko-PIT</p>
+                    
+                </div></td>
+                
+            </tr>
+            <tr>
+                <th>Štvrtok</th>
+                <td class="stvrtok" colspan="14"><div id="stvrtokdiv">
+                    <p class="tomi event item7 cviko sudy">Tomi-SV sudy</p>
+                    <p class="tomi event item8 cviko sudy">Tomi-SP sudy</p>
+                    <p class="tomi event item9 cviko ">Tomi-TP</p>
+                    <p class="tomi event item10 cviko lichy" id="tomirp">Tomi-RP lichy</p>
+                    <p class="tomi event item11 cviko lichy">Tomi-OPD lichy</p>
+                    <p class="risko event item18 prednaska">Risko-OCH</p>
+                    <p class="risko event item19 prednaska">Risko-ACH</p>
+                    <p class="risko event item20 cviko">Risko-ACH</p>
+                    <p class="risko event item21 cviko">Risko-OCH</p>
+                    <p class="krsko event item28 cviko">Krsko-MAT</p>
+                    <p class="krsko event item29 cviko">Krsko-ANJ</p>
+                    <p class="krsko event item30 prednaska">Krsko-ZP</p>
+                    <p class="adka event item32 cviko">Adka-ANJ</p>
+                    <p class="adka event item33 cviko lichy">Adka-ZAE lichy</p>
+                    <p class="adka event item34 cviko">Adka-MAT</p>
+                    <p class="kubko event item38 cviko">Kubko-ZP</p>
+                    <p class="kubko event item39 cviko lichy">Kubko-NP lichy</p>
+                    <p class="olko event item52 cviko">Olko-ANJ</p>
+                    <p class="olko event item53 cviko">Olko-PIT</p>
+                    <p class="olko event item54 cviko">Olko-ANA</p>
+                    <p class="olko event item55 cviko">Olko-PIT</p>
+
+                </div></td>
+                
+                
+            </tr>
+            <tr>
+                <th>Piatok</th>
+                <td class="piatok" colspan="14"><div id="piatokdiv">
+                    <p class="kubko event item37 prednaska">Kubko-ZP</p>
+                    <p class="kubko event item40 prednaska">Kubko-VS</p>
+                    <p class="olko event item56 cviko">Olko-PIT</p>
+                    <p class="olko event item57 cviko">Olko-PIT</p>
+                    <p class="olko event item58 cviko">Olko-PIT</p>
+                    <p class="olko event item59 cviko">Olko-HIS</p>
+                    <p class="olko event item60 cviko">Olko-PP</p>
+                </div></td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

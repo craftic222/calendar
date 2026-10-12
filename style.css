@@ -1,0 +1,560 @@
+:root {
+    --page-bg: #f1f5f9;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --text: #1e293b;
+    --muted: #64748b;
+    --blue-bg: #dbeafe;
+    --blue-text: #1d4ed8;
+    --gray-bg: #e2e8f0;
+    --gray-text: #334155;
+    --timeline: #f87171;
+}
+/* Person-specific colors */
+.riskodiv  { --person-color: #1d4ed8; }
+.kubkodiv  { --person-color: #6d28d9; }
+.tomidiv   { --person-color: #047857; }
+.adkadiv   { --person-color: #d64380; }
+.krskodiv  { --person-color: #0f766e; }
+.olkodiv   { --person-color: #c2410c; }
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--page-bg);
+    font-family: "Segoe UI", Verdana, sans-serif;
+    color: var(--text);
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+}
+
+/* Checkbox controls */
+.checkboxy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.checkboxy div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+/* Timetable */
+table {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 4px 16px rgb(15 23 42 / 5%);
+}
+
+th {
+    padding: 12px 8px;
+    background: #f8fafc;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border-strong);
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Grid inside each day */
+td > div {
+    display: grid;
+    grid-template-columns: repeat(84, minmax(0, 1fr));
+    position: relative;
+    padding: 4px 0;
+    min-height: 48px;
+}
+
+/* Time labels / timeline container */
+.cas div {
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+    align-items: stretch;
+}
+
+.cas div p {
+    font-weight: 600;
+    border-right: 1px solid var(--border);
+    background: #f8fafc;
+    color: var(--muted);
+    padding: 12px 4px;
+    width: auto;
+    text-align: center;
+    font-size: 12px;
+    margin: 0px;
+}
+
+/* All events */
+td > div > p.event {
+    min-width: 0;
+    margin: 3px 2px;
+    padding: 9px 4px;
+    border: 1px solid rgb(148 163 184 / 15%);
+    border-radius: 7px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.4;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    align-self: stretch;
+    z-index: 0;
+    transition: filter 150ms ease, box-shadow 150ms ease;
+}
+
+td > div > p.event:hover {
+    filter: brightness(0.97);
+    box-shadow: 0 2px 6px rgb(15 23 42 / 10%);
+}
+
+/* Current-time indicator */
+#timeline {
+    background: var(--timeline);
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    left: -1px;
+    top: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#timeline::after {
+    content: "";
+    height: 9px;
+    width: 16px;
+    position: absolute;
+    left: -7px;
+    top: 0;
+    background: var(--timeline);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Optional: smoother scrolling on smaller screens */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+@media (max-width: 800px) {
+    body {
+        padding: 10px;
+    }
+
+    table {
+        min-width: 850px;
+    }
+} 
+
+/*
+*/
+/* Controls container */
+.checkboxy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgb(15 23 42 / 5%);
+}
+
+/* Individual person controls */
+.checkboxy > div {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    transition: background 150ms ease, border-color 150ms ease;
+}
+
+.checkboxy > div:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+
+/* Custom checkbox */
+.checkboxy input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    border: 2px solid #cbd5e1;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 150ms ease, border-color 150ms ease;
+}
+
+.checkboxy input[type="checkbox"]::before {
+    content: "";
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg) scale(0);
+    transition: transform 100ms ease;
+}
+
+.checkboxy input[type="checkbox"]:checked {
+    background: var(--person-color, #475569);
+    border-color: var(--person-color, #475569);
+}
+
+.checkboxy input[type="checkbox"]:checked::before {
+    transform: rotate(-45deg) scale(1);
+}
+
+.checkboxy input[type="checkbox"]:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
+}
+
+/* Checkbox labels */
+.checkboxy label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--person-color, #475569);
+    cursor: pointer;
+}
+
+.checkboxy p {
+    margin: 0;
+    color: var(--person-color, #334155);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Week selection buttons */
+#aktualnybutton,
+#sudybutton,
+#lichybutton {
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 150ms ease,
+        color 150ms ease,
+        border-color 150ms ease,
+        transform 150ms ease;
+}
+
+#aktualnybutton:hover,
+#sudybutton:hover,
+#lichybutton:hover {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #93c5fd;
+}
+
+#aktualnybutton:active,
+#sudybutton:active,
+#lichybutton:active {
+    transform: translateY(1px);
+}
+
+#aktualnybutton:focus-visible,
+#sudybutton:focus-visible,
+#lichybutton:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .checkboxy {
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .checkboxy > div {
+        padding: 7px 9px;
+        gap: 7px;
+    }
+
+    #aktualnybutton,
+    #sudybutton,
+    #lichybutton {
+        padding: 9px 11px;
+    }
+}
+/*
+*/
+.risko { --person-color-bg: #8198c2;--person-color: #1d4ed8; }
+.kubko { --person-color-bg: #a092bd; --person-color: #6d28d9;}
+.tomi  { --person-color-bg: #83a99a; --person-color: #047857; }
+.adka  { --person-color-bg: #c49aaa; --person-color: #d64380; }
+.krsko { --person-color-bg: #80aaa5; --person-color: #0f766e; }
+.olko  { --person-color-bg: #c4a18a; --person-color: #c2410c; }
+
+
+
+/* Lectures: colored text, neutral background */
+.prednaska {
+    background: #e2e8f0;
+    color: var(--person-color, #334155);
+}
+
+/* Exercises: colored background, readable text */
+.cviko {
+    background: var(--person-color-bg, #dbeafe);
+    color: #fff;
+}
+
+/*.cviko {
+    background: var(--blue-bg);
+    color: var(--blue-text);
+}
+
+.prednaska {
+    background: var(--gray-bg);
+    color: var(--gray-text);
+}*/
+
+
+
+/*
+html:has(.riskocheckbox:checked) .risko{
+    display: block;
+}
+html:has(.kubkocheckbox:checked) .kubko{
+    display: block;
+}
+html:has(.adkacheckbox:checked) .adka{
+    display: block;
+}
+html:has(.tomicheckbox:checked) .tomi{
+    display: none;
+}
+html:has(.krskocheckbox:checked) .krsko{
+    display: block;
+}
+*/
+
+
+.item1{
+    grid-column: 1/span 11;
+}
+.item2{
+    grid-column: 37/span 11;
+}
+.item3{
+    grid-column: 49/span 11;
+}
+.item4{
+    grid-column: 61/span 11;
+}
+.item5{
+    grid-column: 1/span 11;
+}
+.item6{
+    grid-column: 13/span 11;
+}
+.item7{
+    grid-column: 1/span 11;
+}
+.item8{
+    grid-column: 37/span 11;
+}
+.item9{
+    grid-column: 61/span 11;
+}
+.item10{
+    grid-column: 13/span 11;
+    grid-row: 1;
+}
+.item11{
+    grid-column: 49/span 11;
+    grid-row: 1;
+}
+.item12{
+    grid-column: 13/span 10;
+}
+.item13{
+    grid-column: 43/span 16;
+}
+.item14{
+    grid-column: 1/span 16;
+}
+.item15{
+    grid-column: 25/span 11;
+}
+.item16{
+    grid-column: 49/span 11;
+}
+.item17{
+    grid-column: 61/span 5;
+}
+.item18{
+    grid-column: 13/span 11;
+}
+.item19{
+    grid-column: 25/span 11;
+}
+.item20{
+    grid-column: 43/span 5;
+}
+.item21{
+    grid-column: 49/span 11;
+}
+.item22{
+    grid-column: 25/span 11;
+}
+.item23{
+    grid-column: 37/span 11;
+}
+.item24{
+    grid-column: 37/span 11;
+}
+.item25{
+    grid-column: 13/span 11;
+}
+.item26{
+    grid-column: 37/span 11;
+}
+.item27{
+    grid-column: 49/span 11;
+}
+.item28{
+    grid-column: 13/span 11;
+}
+.item29{
+    grid-column: 25/span 11;
+}
+.item30{
+    grid-column: 49/span 11;
+}
+.item31{
+    grid-column: 37/span 11;
+}
+.item32{
+    grid-column: 1/span 11;
+}
+.item33{
+    grid-column: 13/span 11;
+}
+.item34{
+    grid-column: 49/span 11;
+}
+.item35{
+    grid-column: 13/span 11;
+}
+.item36{
+    grid-column: 1/span 11;
+}
+.item37{
+    grid-column: 13/span 11;
+}
+.item38{
+    grid-column: 25/span 11;
+}
+.item39{
+    grid-column: 37/span 11;
+}
+.item40{
+    grid-column: 25/span 16;
+}
+.item41{
+    grid-column: 1/span 10;
+}
+.item42{
+    grid-column: 1/span 15;
+}
+.item43{
+    grid-column: 25/span 10;
+}
+.item44{
+    grid-column: 40/span 24;
+}
+.item45{
+    grid-column: 18/span 12;
+}
+.item46{
+    grid-column: 31/span 10;
+}
+.item47{
+    grid-column: 34/span 10;
+}
+.item48{
+    grid-column: 43/span 12;
+}
+.item49{
+    grid-column: 13/span 12;
+}
+.item50{
+    grid-column: 25/span 12;
+}
+.item51{
+    grid-column: 31/span 24;
+}
+.item52{
+    grid-column: 1/span 12;
+}
+.item53{
+    grid-column: 1/span 24;
+}
+.item54{
+    grid-column: 16/span 15;
+}
+.item55{
+    grid-column: 31/span 24;
+}
+.item56{
+    grid-column: 1/span 24;
+}
+.item57{
+    grid-column: 1/span 15;
+}
+.item58{
+    grid-column: 1/span 12;
+}
+.item59{
+    grid-column: 19/span 12;
+}
+.item60{
+    grid-column: 31/span 24;
+}
