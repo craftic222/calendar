@@ -469,7 +469,7 @@ html:has(.krskocheckbox:checked) .krsko{
     grid-column: 49/span 11;
 }
 .item31{
-    grid-column: 37/span 11;
+    grid-column: 61/span 11;
 }
 .item32{
     grid-column: 1/span 11;
@@ -493,7 +493,7 @@ html:has(.krskocheckbox:checked) .krsko{
     grid-column: 25/span 11;
 }
 .item39{
-    grid-column: 37/span 11;
+    grid-column: 13/span 11;
 }
 .item40{
     grid-column: 25/span 16;
@@ -560,4 +560,7 @@ html:has(.krskocheckbox:checked) .krsko{
 }
 .item61{
     grid-column: 13/span 11;
+}
+.item62{
+    grid-column: 61/span 11;
 }
