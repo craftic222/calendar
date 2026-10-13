@@ -558,3 +558,6 @@ html:has(.krskocheckbox:checked) .krsko{
 .item60{
     grid-column: 31/span 24;
 }
+.item61{
+    grid-column: 13/span 11;
+}
