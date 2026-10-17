@@ -15,9 +15,10 @@
 .riskodiv  { --person-color: #1d4ed8; }
 .kubkodiv  { --person-color: #6d28d9; }
 .tomidiv   { --person-color: #047857; }
-.adkadiv   { --person-color: #d64380; }
+.adkadiv   { --person-color: #9053b5; }
 .krskodiv  { --person-color: #0f766e; }
 .olkodiv   { --person-color: #c2410c; }
+.tozickadiv   { --person-color: #d673a0; }
 
 
 * {
@@ -327,7 +328,7 @@ td > div > p.event:hover {
 .risko { --person-color-bg: #8198c2;--person-color: #1d4ed8; }
 .kubko { --person-color-bg: #a092bd; --person-color: #6d28d9;}
 .tomi  { --person-color-bg: #83a99a; --person-color: #047857; }
-.adka  { --person-color-bg: #c49aaa; --person-color: #d64380; }
+.adka  { --person-color-bg: #b87ddb; --person-color: #9053b5; }
 .krsko { --person-color-bg: #80aaa5; --person-color: #0f766e; }
 .olko  { --person-color-bg: #c4a18a; --person-color: #c2410c; }
 
@@ -566,4 +567,28 @@ html:has(.krskocheckbox:checked) .krsko{
 }
 .item63{
     grid-column: 37/span 11;
+}
+.item64{
+    grid-column: 55/span 11;
+}
+.item65{
+    grid-column: 1/span 9;
+}
+.item66{
+    grid-column: 13/span 9;
+}
+.item67{
+    grid-column: 13/span 9;
+}
+.item68{
+    grid-column: 49/span 9;
+}
+.item69{
+    grid-column: 37/span 11;
+}
+.item70{
+    grid-column: 37/span 11;
+}
+.item71{
+    grid-column: 1/span 9;
 }
