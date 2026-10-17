@@ -331,6 +331,7 @@ td > div > p.event:hover {
 .adka  { --person-color-bg: #b87ddb; --person-color: #9053b5; }
 .krsko { --person-color-bg: #80aaa5; --person-color: #0f766e; }
 .olko  { --person-color-bg: #c4a18a; --person-color: #c2410c; }
+.tozicka  { --person-color-bg: #eb88b5; --person-color: #d673a0; }
 
 
 
@@ -584,10 +585,10 @@ html:has(.krskocheckbox:checked) .krsko{
     grid-column: 49/span 9;
 }
 .item69{
-    grid-column: 37/span 11;
+    grid-column: 37/span 9;
 }
 .item70{
-    grid-column: 37/span 11;
+    grid-column: 37/span 9;
 }
 .item71{
     grid-column: 1/span 9;
