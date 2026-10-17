@@ -14,11 +14,12 @@ var kubkovis = 1;
 var krskovis = 1;
 var riskovis = 1;
 var olkovis = 1;
+var tozickavis = 1;
 var sudyvis = 0;
 var lichyvis = 0;
 
 var days = ["nedela","pondelok","utorok","streda","stvrtok","piatok","sobota"]
-var listclass = ["tomi","adka","krsko","kubko","risko","olko"]
+var listclass = ["tomi","adka","krsko","kubko","risko","olko","tozicka"]
 var classa= ""
 var events =document.getElementsByClassName("event")
 var sude = document.getElementsByClassName("sudy");
@@ -31,6 +32,7 @@ var krsko = document.getElementsByClassName("krsko");
 var kubko = document.getElementsByClassName("kubko");
 var adka = document.getElementsByClassName("adka");
 var olko = document.getElementsByClassName("olko");
+var tozicka = document.getElementsByClassName("tozicka");
 var aktualnybutton = document.getElementById("aktualnybutton");
 var classevents = 0;
 
@@ -86,6 +88,12 @@ function display(){
     }
     if (olkovis == 0){
         classevents = document.getElementsByClassName("olko");
+        for (let j = 0; j < classevents.length; j++){
+            classevents[j].style.display="none";
+        }
+    }
+    if (tozickavis == 0){
+        classevents = document.getElementsByClassName("tozicka");
         for (let j = 0; j < classevents.length; j++){
             classevents[j].style.display="none";
         }
@@ -173,6 +181,15 @@ function olkochange(){
     }
     else {
         olkovis=0;
+    }
+    display();
+}
+function tozickachange(){
+    if (tozickavis == 0){
+        tozickavis=1;
+    }
+    else {
+        tozickavis=0;
     }
     display();
 }
