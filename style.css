@@ -462,7 +462,7 @@ html:has(.krskocheckbox:checked) .krsko{
     grid-column: 49/span 11;
 }
 .item31{
-    grid-column: 37/span 11;
+    grid-column: 61/span 11;
 }
 .item32{
     grid-column: 1/span 11;
@@ -486,7 +486,7 @@ html:has(.krskocheckbox:checked) .krsko{
     grid-column: 25/span 11;
 }
 .item39{
-    grid-column: 37/span 11;
+    grid-column: 13/span 11;
 }
 .item40{
     grid-column: 25/span 16;
@@ -553,4 +553,34 @@ html:has(.krskocheckbox:checked) .krsko{
 }
 .item61{
     grid-column: 13/span 11;
+}
+.item62{
+    grid-column: 61/span 11;
+}
+.item63{
+    grid-column: 37/span 11;
+}
+.item64{
+    grid-column: 55/span 11;
+}
+.item65{
+    grid-column: 1/span 9;
+}
+.item66{
+    grid-column: 13/span 9;
+}
+.item67{
+    grid-column: 13/span 9;
+}
+.item68{
+    grid-column: 49/span 9;
+}
+.item69{
+    grid-column: 37/span 9;
+}
+.item70{
+    grid-column: 37/span 9;
+}
+.item71{
+    grid-column: 1/span 9;
 }
