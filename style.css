@@ -218,7 +218,9 @@ td > div > p.event {
     font-size: 11px;
     line-height: 1.4;
     font-weight: 650;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    overflow: clip;
+    overflow-clip-margin: content-box;
     align-self: stretch;
     z-index: 0;
     transition:
