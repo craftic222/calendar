@@ -6,8 +6,25 @@ Date.prototype.getWeek = function() {
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 };
 
-// Example usage:
+
 const today = new Date();
+const thisday = today.getDay();
+const monday = new Date(today);
+monday.setDate(today.getDate() - (thisday === 0 ? 6 : thisday - 1));
+
+const dates = Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + i);
+
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const yyyy = date.getFullYear();
+
+    return `${dd}-${mm}-${yyyy}`;
+});
+
+// Example usage:
+
 var adkavis = 1;
 var tomivis = 1;
 var kubkovis = 1;
@@ -18,8 +35,9 @@ var tozickavis = 1;
 var sudyvis = 0;
 var lichyvis = 0;
 
+
 var days = ["nedela","pondelok","utorok","streda","stvrtok","piatok","sobota"]
-var listclass = ["tomi","adka","krsko","kubko","risko","olko","tozicka"]
+var listclass = ["tomi","adka","krsko","kubko","risko","tozicka","olko"]
 var classa= ""
 var events =document.getElementsByClassName("event")
 var sude = document.getElementsByClassName("sudy");
@@ -36,8 +54,26 @@ var tozicka = document.getElementsByClassName("tozicka");
 var aktualnybutton = document.getElementById("aktualnybutton");
 var classevents = 0;
 
+var names = ["tomi","risko","krsko","adka","kubko","tozicka","olko"]
+const daysoftheweek = ["pondelok","utorok","streda","stvrtok","piatok","sobota","nedela"]
+const daysics = ["Po","Út","St","Čt","Pá","So","Ne"]
+var den = 0;
 
-function display(){
+var AllClasses = [];
+async function readClasses() {
+    for (let i = 0; i < names.length; i++) {
+        var name = names[i];
+        var nameofjson = name + ".json"
+        const response = await fetch(nameofjson);
+        const classes = await response.json();
+        console.log(classes);
+        AllClasses.push(classes);
+        addingEvents(name,classes)
+    }
+    console.log(AllClasses);
+}
+
+function display(actualdisplay){
     for (let a = 0; a < events.length; a++){
             events[a].style.display="block";
         }
@@ -98,6 +134,38 @@ function display(){
             classevents[j].style.display="none";
         }
     }
+    if (actualdisplay != 1) {
+        classevents = document.getElementsByClassName("seasonal");
+        for (let j = 0; j < classevents.length; j++){
+            classevents[j].style.display="none";
+        } 
+    }
+    
+    if (actualdisplay == 1) {
+        for (let i = 0; i < AllClasses.length; i++) {
+            const classes = AllClasses[i];
+            for (let j = 0; j < classes.length; j++) {
+                const timetableclass = classes[j];
+                if (timetableclass.length == 8) {
+                    var actualvis = 0;
+                    for (let k = 0; k < timetableclass[7].length; k++) {
+                        if (dates.includes(timetableclass[7][k])) {
+                            console.log("matubyt");
+                            actualvis = 1;
+                            break;
+                        }
+                    }
+                    if (actualvis == 0) {
+                        const Eventbyname=document.getElementsByClassName(names[i]+j)
+                        for (let l = 0; l < Eventbyname.length; l++) {
+                            const OneEventbyname = Eventbyname[l];
+                            OneEventbyname.style.display="none";
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 function aktualnybuttonpress(){
@@ -112,7 +180,7 @@ function aktualnybuttonpress(){
     aktualnybutton.style.background="gray";
     sudybutton.style.background="lightgray";
     lichybutton.style.background="lightgray";
-    display();
+    display(1);
 }
 function sudybuttonpress(){
     lichyvis=0;
@@ -197,12 +265,21 @@ function tozickachange(){
 function actual() {
     const div = document.createElement("div");
     div.id= "timeline";
-    day = today.getDay();
     if (today.getHours() > 21){
-        daydiv = days[day+1] + "div";
+        if (thisday + 1 > 4) {
+            daydiv = days[1] + "div";
+        }
+        else{
+            daydiv = days[thisday+1] + "div";
+        }
     }
     else{
-        daydiv = days[day] + "div";
+        if (thisday > 4) {
+            daydiv = days[1] + "div";
+        }
+        else{
+            daydiv = days[thisday] + "div";
+        }
     }
     console.log(daydiv);
 
@@ -211,10 +288,10 @@ function actual() {
 } 
 function actualtime(){
     const hourscolumn = today.getHours()*6;
-    const timelinecolumn = hourscolumn -8*6 + 1 + Math.floor(today.getMinutes()/ 10);
+    var timelinecolumn = hourscolumn -8*6 + 1 + Math.floor(today.getMinutes()/ 10);
     console.log(today);
     if (timelinecolumn < 1){
-      timelinecolumn = 1;
+        timelinecolumn=1;
     }
     document.getElementById("timeline").style.gridColumn=timelinecolumn;
 }
@@ -236,5 +313,81 @@ function add() {
     p.textContent="hello";
     document.getElementById("pondelokdiv").appendChild(p);
 } */
-aktualnybuttonpress();
+Date.prototype.getWeek = function() {
+  const d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+};
+
+
+
+
+
+
+
+
+
+
+function addingEvents(name,classes) {
+    for (let i = 0; i < classes.length; i++) {
+        
+        const Class = classes[i];
+        if (name == "olko" && Class[2] == "prednaska") {
+            continue;
+        }
+        const event = document.createElement("p");
+        var cssClasses = "event ";
+        cssClasses += Class[2]+" "; //prednaska laebo cviko
+        cssClasses += name+i +" ";  //css classa pridavanie
+        cssClasses += name + " ";   // meno cloveka
+        if (Class[6] == "sudy") {
+            cssClasses +="sudy "; 
+        }
+        else if (Class[6] == "lichy") {
+            cssClasses += "lichy ";
+        }
+        else{
+            cssClasses += "all ";
+        }
+        event.style.gridColumn=Class[4]; //column a span
+        event.textContent=Class[0]; // nazov eventu
+        if (Class.length == 8) {
+            if (Class[7].length < 5) {
+                cssClasses += "seasonal " ;
+            } 
+        }
+        
+        if (Class[5].length == 1) {  ////   !!!!!!!!!!!!!!!!!!!! aktualny pozrie datumy a sudy lichy fixne dni
+            const dayindex = daysics.indexOf(Class[5][0]);
+            if (Class[4][0] != "-") {
+                if (dayindex < 5 && dayindex != -1) {
+                    event.classList=cssClasses;   // davanie class do css eventom
+                    const dayId = daysoftheweek[dayindex]+"div";
+                    document.getElementById(dayId).appendChild(event);
+                }
+            }
+            
+        } 
+        else {
+            for (let j = 0; j < Class[5].length; j++) {
+                cssClasses += name + i + "_" + j + " ";
+                const dayindex = daysics.indexOf(Class[5][j]);
+                if (Class[4][0] != "-") {
+                    if (dayindex < 5 && dayindex != -1) {
+                        event.classList=cssClasses;   // davanie class do css eventom
+                        const dayId = daysoftheweek[dayindex]+"div";
+                        document.getElementById(dayId).appendChild(event);
+                    }
+                }
+            }
+        }
+    }
+    aktualnybuttonpress();
+}
+readClasses();
+
+console.log(dates);
 actual();
+
